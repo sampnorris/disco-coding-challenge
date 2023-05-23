@@ -1,68 +1,71 @@
-Front End Coding Challenge
+# Frontend Coding Challenge
 
-## What are we optimising for?
+The excercise is to create a Redux app for The Art Institute of Chicago, this app displays a gallary of artworks from (their api)[https://api.artic.edu/docs/#collections].
+
+As the purpose pf this exercise is to test frontend proficiency, particularly in the areas of state management, routing, and API integration. Below I've outlined my approach.
+
+## What are we optimizing for?
 
 ### State Management
 
-To show an understanding of Redux, I've implemented state management, to call the artwork API, and save the responses to a store. This approach will take care of refetching, and caching, to improved percieved performance.
+To demonstrate an understanding of Redux, I have implemented state management to call the artwork API and save the responses to a store. This approach takes care of refetching and caching, improving perceived performance.
 
-## Routing
+### Routing
 
-We've implemented `react-router-dom` to manage routing of this application, query params are use to manage pagination, and the ID of each artwork is used in the individual artwork route.
-I've also implemented the router state, to allow the user to breadcrumb back to the page they were up to on the Home route.
+I have implemented react-router-dom to manage the routing of this application. Query parameters are used to handle pagination, and the ID of each artwork is utilised in the individual artwork route. Additionally, I have implemented the router state to allow the user to breadcrumb back to the page they were on in the Home route.
 
-### API payload
+### API Payload
 
-The endpoints we are referencing, allow us to specify the fields we need, this allows us to optimize the response from the server, and reduce the response payload.
+The endpoints we are referencing allow us to specify the fields we need. This optimisation reduces the response payload from the server to improve performance.
 
-### Typescript
+### TypeScript
 
-This app in built in typescript, we are inferring the API types in `./src/services/artworks.ts` so that benifit from type safety throughout the app.
+This app is built in TypeScript. We infer the API types in `./src/services/artworks.ts` to benefit from type safety throughout the app.
 
-## What are we not optimising for?
+## What are we not optimizing for?
 
 ### Styling
 
-For this exercise, I've implemented styling via the Chakra UI library.
+For this exercise, I have implemented styling using the Chakra UI library, I've chosen no to focus on stlying or HTML markup.
 
 ### Compatibility
 
-For this excercise, we'll assume the user is using an up to date browser, this has been set up to compile using typescript, with no polyfills.
+For this exercise, we assume that the user is using an up-to-date browser. The project is set up to compile using TypeScript without any polyfills to support legacy browsers.
 
 ### Testing
 
-I've kept the development of this quite functional, however I have not included any unit testing, to give more time to focus on other aspects of the requirements.
+I have not included any unit testing. This decision was made to allocate more time to other aspects of the requirements.
 
 ### Error Handling
 
-API errors will return a 404 page at this stage, If this were to be fleshed out, we would show the user some more meaningful error messages.
+API errors will currently result in a 404 page. If further development were to be done, we would provide more meaningful error messages to the user.
 
 ## Features
 
 ### Image Loading
 
-To avoid a jumpy UI, I've built an image loading component, that shows a loading skeleton in place of the image while it's fetched. This also allows us to set a fallback image when the image source URL doesn't load correctly which is the case for some of these artworks.
+To prevent a jumpy UI, I have created an image loading component that displays a loading skeleton while the image is being fetched. This component also allows us to set a fallback image when the image source URL fails to load correctly, as is the case with some artworks retrieved from the API.
 
 ### Pagination
 
-We can paginate through pages of results on the home page, after the first visit, these results are cached in the Redux store, so that they load instantaneously on the next visit.
+On the home page, we can paginate through multiple result pages. After the first visit, these results are cached in the Redux store, ensuring instantaneous loading on subsequent visits.
 
-_Note: The store is cleared on refresh, I did not set up local store persistence._
+_Note: The store is cleared upon refresh. Local store persistence has not been set up._
 
 ### Loading Skeletons
 
-The user is presented with some rudimentary loading skeletons while the API is being called for the first time.
+While the API is being called for the first time, the user is presented with rudimentary loading skeletons
 
 ## Running this App
 
 ### Prerequisites
 
-NodeJS - Tested on 18.12.0
-PNPM - Package manager - should work on `yarn` or `npm`
+NodeJS - Tested on version 18.12.0
+PNPM - Package manager (should work with yarn or npm as well)
 
 ### Setup
 
-Run `pnpm install` to install dependencies.
+Run `pnpm install` to install the dependencies.
 
 Run `pnpm start` to start the development server.
 
