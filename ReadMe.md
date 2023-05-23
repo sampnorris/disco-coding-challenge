@@ -67,3 +67,5 @@ Run `pnpm install` to install dependencies.
 Run `pnpm start` to start the development server.
 
 Run `pnpm build` to build for production.
+
+Navigate to `http://localhost:3000`
