@@ -14,18 +14,16 @@ import {
   Text,
 } from "@chakra-ui/react";
 
-import { getImageUrl } from "../utils";
 import { ImageLoader } from "../components/ImageLoader";
 import { PageDetails } from "../components/PageDetails";
 
 const DOCUMENT_TITLE = "Artworks from The Art Institute of Chicago";
 
 const ArtworkCard: React.FC<{
-  id: string;
   title: string;
   artist: string;
   Image: React.ReactNode;
-}> = ({ title, Image, id, artist }) => (
+}> = ({ title, Image, artist }) => (
   <Card height="100%">
     <CardBody>
       <Box mb={3}>{Image}</Box>
@@ -86,16 +84,12 @@ export const Home: React.FC<{}> = () => {
                 <Link state={{ page }} to={`/artwork/${artwork.id}`}>
                   <ArtworkCard
                     title={artwork.title}
-                    artist={artwork.artist_display}
-                    id={artwork.id}
+                    artist={artwork.artistDisplay}
                     Image={
                       <ImageLoader
                         ratio={4 / 3}
-                        src={getImageUrl(
-                          data.meta.imageUrlBase,
-                          artwork.image_id
-                        )}
-                        alt={artwork.alt_titles}
+                        src={artwork.imageUrl}
+                        alt={artwork.title}
                       />
                     }
                   />

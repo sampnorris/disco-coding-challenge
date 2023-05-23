@@ -20,19 +20,23 @@ import {
 import { ImageLoader } from "../components/ImageLoader";
 import { PageDetails } from "../components/PageDetails";
 import { useGetArtworkByIdQuery } from "../services/artworks";
-import { getImageUrl } from "../utils";
 
 export const Artwork: React.FC<{}> = () => {
   const { id } = useParams();
   const { state } = useLocation();
 
-  const { isError, isLoading, isSuccess, data } = useGetArtworkByIdQuery({
+  const {
+    isError,
+    isLoading,
+    isSuccess,
+    data: artwork,
+  } = useGetArtworkByIdQuery({
     id: id || "",
   });
 
   useEffect(() => {
-    if (data?.artwork.title) document.title = data?.artwork.title;
-  }, [data?.artwork.title]);
+    if (artwork?.title) document.title = artwork?.title;
+  }, [artwork?.title]);
 
   if (isError) return <Navigate to={"/404"} />;
 
@@ -48,7 +52,7 @@ export const Artwork: React.FC<{}> = () => {
               {`Page ${state.page} / `}
             </Link>
           )}
-          {data?.artwork.title}
+          {artwork?.title}
         </Text>
       </PageDetails>
 
@@ -56,42 +60,39 @@ export const Artwork: React.FC<{}> = () => {
         {isSuccess ? (
           <>
             <GridItem>
-              <ImageLoader
-                src={getImageUrl(data.meta.imageUrlBase, data.artwork.image_id)}
-                alt={data.artwork.description}
-              />
+              <ImageLoader src={artwork.imageUrl} alt={artwork.title} />
             </GridItem>
             <GridItem>
               <Heading mb={2} as="h1">
-                {data.artwork.title}
+                {artwork.title}
               </Heading>
               <Heading mb={3} as="h2" size="md">
-                {data.artwork.artist_display}
+                {artwork.artistDisplay}
               </Heading>
               <Wrap mb={4}>
-                {data.artwork.is_public_domain && (
+                {artwork.isPublicDomain && (
                   <Tag size="md" colorScheme="blue">
                     Public Domain
                   </Tag>
                 )}
-                {data.artwork.is_on_view && (
+                {artwork.isOnView && (
                   <Tag size="md" colorScheme="gray">
                     On View
                   </Tag>
                 )}
                 <Tag size="md" colorScheme="orange">
-                  {data.artwork.artwork_type_title}
+                  {artwork.artworkTypeTitle}
                 </Tag>
                 <Tag size="md" colorScheme="green">
-                  {data.artwork.medium_display}
+                  {artwork.mediumDisplay}
                 </Tag>
               </Wrap>
 
               <Text>
-                <strong>Period:</strong> {data.artwork.date_display}
+                <strong>Period:</strong> {artwork.dateDisplay}
               </Text>
               <Text>
-                <strong>Origin:</strong> {data.artwork.place_of_origin}
+                <strong>Origin:</strong> {artwork.placeOfOrigin}
               </Text>
             </GridItem>
           </>
