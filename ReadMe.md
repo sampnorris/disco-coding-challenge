@@ -1,6 +1,6 @@
 # Frontend Coding Challenge
 
-The excercise is to create a Redux app for The Art Institute of Chicago, this app displays a gallary of artworks from (their api)[https://api.artic.edu/docs/#collections].
+The excercise is to create a Redux app for The Art Institute of Chicago, this app displays a gallary of artworks from [their api](https://api.artic.edu/docs/#collections).
 
 As the purpose pf this exercise is to test frontend proficiency, particularly in the areas of state management, routing, and API integration. Below I've outlined my approach.
 
