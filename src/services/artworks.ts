@@ -1,5 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
+/* We are inferring API types based off the documentation, 
+I attempted to import these automatically from swagger, but their API schema is outdated. */
+
 type Artwork = {
   id: string;
   title: string;
