@@ -17,8 +17,8 @@ import {
   Skeleton,
   SkeletonText,
 } from "@chakra-ui/react";
-import { ImageLoader } from "../Components/ImageLoader";
-import { PageDetails } from "../Components/PageDetails";
+import { ImageLoader } from "../components/ImageLoader";
+import { PageDetails } from "../components/PageDetails";
 import { useGetArtworkByIdQuery } from "../services/artworks";
 import { getImageUrl } from "../utils";
 

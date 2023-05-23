@@ -15,8 +15,8 @@ import {
 } from "@chakra-ui/react";
 
 import { getImageUrl } from "../utils";
-import { ImageLoader } from "../Components/ImageLoader";
-import { PageDetails } from "../Components/PageDetails";
+import { ImageLoader } from "../components/ImageLoader";
+import { PageDetails } from "../components/PageDetails";
 
 const DOCUMENT_TITLE = "Artworks from The Art Institute of Chicago";
 
@@ -106,7 +106,7 @@ export const Home: React.FC<{}> = () => {
 
           <Flex justifyContent="space-between">
             <Button
-              loadingText="Loading Next Page"
+              loadingText="Loading Previous Page"
               isLoading={isFetching && data.meta.currentPage > page}
               isDisabled={isOnFirstPage}
               onClick={prevPage}
