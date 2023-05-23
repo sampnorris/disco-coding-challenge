@@ -1,5 +1,10 @@
 import React, { useEffect } from "react";
-import { useParams, Link as RRLink, Navigate } from "react-router-dom";
+import {
+  useParams,
+  Link as RRLink,
+  Navigate,
+  useLocation,
+} from "react-router-dom";
 
 import {
   SimpleGrid,
@@ -19,6 +24,7 @@ import { getImageUrl } from "../utils";
 
 export const Artwork: React.FC<{}> = () => {
   const { id } = useParams();
+  const { state } = useLocation();
 
   const { isError, isLoading, isSuccess, data } = useGetArtworkByIdQuery({
     id: id || "",
@@ -35,9 +41,14 @@ export const Artwork: React.FC<{}> = () => {
       <PageDetails showSpinner={isLoading}>
         <Text>
           <Link as={RRLink} to={"/"}>
-            Home
-          </Link>{" "}
-          / {data?.artwork.title}
+            {`Home / `}
+          </Link>
+          {state.page && (
+            <Link as={RRLink} to={`/?page=${state.page}`}>
+              {`Page ${state.page} / `}
+            </Link>
+          )}
+          {data?.artwork.title}
         </Text>
       </PageDetails>
 

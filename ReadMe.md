@@ -9,6 +9,7 @@ To show an understanding of Redux, I've implemented state management, to call th
 ## Routing
 
 We've implemented `react-router-dom` to manage routing of this application, query params are use to manage pagination, and the ID of each artwork is used in the individual artwork route.
+I've also implemented the router state, to allow the user to breadcrumb back to the page they were up to on the Home route.
 
 ### API payload
 

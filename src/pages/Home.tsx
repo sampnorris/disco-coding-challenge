@@ -26,19 +26,17 @@ const ArtworkCard: React.FC<{
   artist: string;
   Image: React.ReactNode;
 }> = ({ title, Image, id, artist }) => (
-  <Link to={`/artwork/${id}`}>
-    <Card height="100%">
-      <CardBody>
-        <Box mb={3}>{Image}</Box>
-        <Heading mb={2} as="h2" size="sm">
-          {title}
-        </Heading>
-        <Heading as="h3" size="xs">
-          {artist}
-        </Heading>
-      </CardBody>
-    </Card>
-  </Link>
+  <Card height="100%">
+    <CardBody>
+      <Box mb={3}>{Image}</Box>
+      <Heading mb={2} as="h2" size="sm">
+        {title}
+      </Heading>
+      <Heading as="h3" size="xs">
+        {artist}
+      </Heading>
+    </CardBody>
+  </Card>
 );
 
 export const Home: React.FC<{}> = () => {
@@ -85,21 +83,23 @@ export const Home: React.FC<{}> = () => {
           <SimpleGrid mb={6} columns={[1, 2, 3, 4]} spacing={6}>
             {data.artworks.map((artwork) => (
               <GridItem key={artwork.id}>
-                <ArtworkCard
-                  title={artwork.title}
-                  artist={artwork.artist_display}
-                  id={artwork.id}
-                  Image={
-                    <ImageLoader
-                      ratio={4 / 3}
-                      src={getImageUrl(
-                        data.meta.imageUrlBase,
-                        artwork.image_id
-                      )}
-                      alt={artwork.alt_titles}
-                    />
-                  }
-                />
+                <Link state={{ page }} to={`/artwork/${artwork.id}`}>
+                  <ArtworkCard
+                    title={artwork.title}
+                    artist={artwork.artist_display}
+                    id={artwork.id}
+                    Image={
+                      <ImageLoader
+                        ratio={4 / 3}
+                        src={getImageUrl(
+                          data.meta.imageUrlBase,
+                          artwork.image_id
+                        )}
+                        alt={artwork.alt_titles}
+                      />
+                    }
+                  />
+                </Link>
               </GridItem>
             ))}
           </SimpleGrid>
